@@ -1,0 +1,29 @@
+GE/Alstom,Business,Segment,Order/ Sale/ OI,Equip/ Serv,GE contract code (Alstom only),IPS,Customer,Project,Country/US State,Qtr,Model, Unit Count , Order/ Sale $ , Order/ Sale Margin $ ,Order/ Sale Margin%,EXT/ OGE/ OI,Country of origin (Alstom only),USExport/ USDomestic/ Intl,Sub Business,GGO Sub Region,GGO Country,USExport or USDomestic,Actuals Only: Intl Check
+GE,GPS,SAATUR,Sale,Equip,,992953,Carroll County,Carroll County,United States North,1Q,BOP,," 47,673,930.40 "," 2,762,365.60 ",0.057942896,EXT,,USDomestic,OTR,United States,UNITED STATES NORTH,USDomestic,Intl
+GE,GPS,SAATUR,Sale,Equip,,723231,Nishi Nagoya,Nishi Nagoya,Japan,1Q,7HA,1," 29,590,527.37 "," 4,061,982.52 ",0.13727307,EXT,,USExport,Gas Turbine,Japan,JAPAN,USExport,Intl
+GE,GPS,SAATUR,Sale,Equip,,723231,Nishi Nagoya,Nishi Nagoya,Japan,1Q,7HA,1," 29,590,527.37 "," 4,061,982.52 ",0.13727307,EXT,,USExport,Gas Turbine,Japan,JAPAN,USExport,Intl
+GE,GPS,SAATUR,Sale,Equip,,723231,Nishi Nagoya,Nishi Nagoya,Japan,1Q,7HA,1," 29,590,527.37 "," 4,061,982.52 ",0.13727307,EXT,,USExport,Gas Turbine,Japan,JAPAN,USExport,Intl
+GE,GPS,SAATUR,Sale,Equip,,1014774,Central Puerto,Central Puerto,Argentina,1Q,9HA,1," 24,088,606.13 "," (12,233,075.04)",-0.507836567,EXT,,Intl,EPE,Americas,ARGENTINA,USExport,Intl
+GE,GPS,SAATUR,Sale,Equip,,488855,Footprint Power Salem Harbor,Footprint Power Salem Harbor,United States North,1Q,BOP,," 23,869,766.00 "," 2,438,894.67 ",0.102175056,EXT,,USDomestic,OTR,United States,UNITED STATES NORTH,USDomestic,Intl
+GE,GPS,SAATUR,Sale,Equip,,932508,Duba,Duba,Saudi Arabia,1Q,BOP,," 23,145,782.80 "," (2,210,017.01)",-0.095482492,EXT,,USExport,OTR,MENAT,SAUDI ARABIA,USExport,Intl
+GE,GPS,SAATUR,Sale,Equip,,AERO,EDF Torun,EDF Torun,Poland,1Q,LM6000 - Pkg,2," 22,259,889.18 "," (3,158,662.98)",-0.141899313,EXT,,Intl,PKG,Europe,POLAND,USExport,Intl
+GE,GPS,SAATUR,Sale,Equip,,834503,HUADIAN KUNSHAN,HUADIAN KUNSHAN,China,1Q,9FB,1," 19,510,293.25 "," (278,382.83)",-0.014268511,EXT,,Intl,EPE,China,CHINA,USExport,Intl
+GE,GPS,SAATUR,Sale,Equip,,803840,PUNTA CATALINA 720 MW COAL PLANT,PUNTA CATALINA 720 MW COAL PLANT,Dominican Republic,1Q,ST,1," 19,455,655.75 "," 1,332,900.96 ",0.068509691,EXT,,USExport,Steam Turbine,Americas,DOMINICAN REPUBLIC,USExport,Intl
+GE,GPS,SAATUR,Sale,Equip,,AERO,Black Hills PAGS Expansion,Black Hills PAGS Expansion,United States North,1Q,LM6000 - Pkg,1," 18,430,964.00 "," 6,564,034.90 ",0.356141703,EXT,,USDomestic,PKG,United States,UNITED STATES NORTH,USDomestic,Intl
+GE,GPS,SAATUR,Sale,Equip,,759424,MEGA ALGERIA BELLARA,MEGA ALGERIA BELLARA,Algeria,1Q,ST,1," 17,392,143.50 "," 5,180,928.84 ",0.297889035,EXT,,USExport,Steam Turbine,MENAT,ALGERIA,USExport,Intl
+GE,GPS,SAATUR,Sale,Equip,,AERO,PLN TM2500,PLN TM2500,Indonesia,1Q,TM,1," 16,259,416.00 "," 8,199,645.30 ",0.504301342,EXT,,Intl,TM,Asean,INDONESIA,USExport,Intl
+GE,GPS,SAATUR,Sale,Equip,,484256,Freeport LNG,Freeport LNG,United States North,1Q,7EA,1," 15,702,563.00 "," 8,489,063.70 ",0.540616439,EXT,,USDomestic,Gas Turbine,United States,UNITED STATES NORTH,USDomestic,Intl
+Alstom,GPS,PWATGC,Sale,EQUIP,SI,CP8344,Rhein Energie,Köln Niehl -SOP 81-1,Germany,1Q,Commissionning,," 14,456,180.53 "," (2,759,405.00)",-0.190880641,EXT,,Intl,Alstom Gas,Germany,GERMANY,USExport,Intl
+GE,GPS,SAATUR,Sale,Equip,,943329,ACONCAGUA,ACONCAGUA,Chile,1Q,6FA,1," 13,551,340.11 "," 4,630,491.77 ",0.341699916,EXT,,Intl,EPE,Americas,CHILE,USExport,Intl
+GE,GPS,SAATUR,Sale,Equip,,488855,Footprint Power Salem Harbor,Footprint Power Salem Harbor,United States North,1Q,ST,1," 12,346,184.50 "," (1,003,440.50)",-0.081275353,EXT,,USDomestic,Steam Turbine,United States,UNITED STATES NORTH,USDomestic,Intl
+GE,GPS,SAATUR,Sale,Equip,,488855,Footprint Power Salem Harbor,Footprint Power Salem Harbor,United States North,1Q,ST,1," 12,346,184.50 "," (1,003,440.50)",-0.081275353,EXT,,USDomestic,Steam Turbine,United States,UNITED STATES NORTH,USDomestic,Intl
+GE,GPS,SAATUR,Sale,Equip,,1035382,BOUCHEMMA,BOUCHEMMA,Tunisia,1Q,9E,1," 12,344,969.24 "," 3,161,390.84 ",0.256087381,EXT,,Intl,EPE,MENAT,TUNISIA,USExport,Intl
+GE,GPS,SAATUR,Sale,Equip,,1035382,BOUCHEMMA,BOUCHEMMA,Tunisia,1Q,9E,1," 12,344,969.24 "," 3,161,390.84 ",0.256087381,EXT,,Intl,EPE,MENAT,TUNISIA,USExport,Intl
+GE,GPS,SAATUR,Sale,Equip,,991000,SALALAH 2 IPP,SALALAH 2 IPP,Oman,1Q,6FA,1," 12,021,370.92 "," 4,862,306.78 ",0.404471904,EXT,,Intl,EPE,MENAT,OMAN,USExport,Intl
+GE,GPS,SAATUR,Sale,Equip,,991000,SALALAH 2 IPP,SALALAH 2 IPP,Oman,1Q,6FA,1," 12,021,370.92 "," 4,862,306.78 ",0.404471904,EXT,,Intl,EPE,MENAT,OMAN,USExport,Intl
+GE,GPS,SAATUR,Sale,Equip,,AERO,Denbury,Denbury,United States North,1Q,LM2500 - Pkg,1," 11,936,929.00 "," 3,831,085.53 ",0.320943983,EXT,,USDomestic,PKG,United States,UNITED STATES NORTH,USDomestic,Intl
+GE,GPS,SAATUR,Sale,Equip,,,SOP correction,SOP correction,United States North,1Q,Other,," 11,929,383.00 "," 10,871,861.00 ",0.911351492,EXT,,Intl,OTR,United States,UNITED STATES NORTH,USDomestic,Intl
+Alstom,GPS,PWATGC,Sale,EQUIP,EEP,CP8095,Samsung C&T (Korea),Kirikale -SOP 81-1,Turkey,1Q,ST,1," 11,404,651.84 "," 1,790,155.14 ",0.156967101,EXT,,Intl,Alstom Gas,MENAT,TURKEY,USExport,Intl
+GE,GPS,SAATUR,Sale,Equip,,AERO,PLN TM2500+,PLN TM2500+,Indonesia,1Q,FRT,," 11,027,687.00 "," 10,423,472.96 ",0.945209359,EXT,,Intl,FRT,Asean,INDONESIA,USExport,Intl
+GE,GPS,SAATUR,Sale,Equip,,AERO,SEC - Phase II,SEC - Phase II,Saudi Arabia,1Q,BOP,," 9,925,017.89 "," 1,331,606.87 ",0.134166697,EXT,,Intl,BOP,MENAT,SAUDI ARABIA,USExport,Intl
+Alstom,GPS,PWATGC,Sale,EQUIP,EEP,CP8095,Samsung C&T (Korea),Kirikale -SOP 81-1,Turkey,1Q,GT MSD,," 9,653,057.58 "," 1,566,399.41 ",0.162269768,EXT,,Intl,Alstom Gas,MENAT,TURKEY,USExport,Intl

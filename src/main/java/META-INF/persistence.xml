@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="FinanceDashboard">
+		<class>com.ge.power.findashboard.entity.FinDashPacing</class>
+		<class>com.ge.power.findashboard.entity.FinDashPacingErrChk</class>
+		<class>com.ge.power.findashboard.entity.FinDashBatchTracker</class>
+		<class>com.ge.power.findashboard.entity.FindashAlert</class>
+		<class>com.ge.power.findashboard.entity.FindashClosingOperationsAgg</class>
+		<class>com.ge.power.findashboard.entity.FindashClosingRunStatus</class>
+		<class>com.ge.power.findashboard.entity.FindashClosingSchedule</class>
+		<class>com.ge.power.findashboard.entity.FindashMessage</class>
+		<class>com.ge.power.findashboard.entity.FinDashPacingStg</class>
+		<class>com.ge.power.findashboard.entity.FinDashPacingStgPK</class>
+		<class>com.ge.power.findashboard.entity.FindashProcessingRate</class>
+		<class>com.ge.power.findashboard.entity.FinDashRegionMapping</class>
+		<class>com.ge.power.findashboard.entity.FindashQuarter</class>
+		<class>com.ge.power.findashboard.entity.FindashClosingFinancePlan</class>
+		<class>com.ge.power.findashboard.entity.FindashClosingFinancialsAgg</class>
+		<class>com.ge.power.findashboard.entity.FindashClosingFinancialsRaw</class>
+		<class>com.ge.power.findashboard.entity.FindashClosingOperPlan</class>
+		
+		
+	</persistence-unit>
+</persistence>
