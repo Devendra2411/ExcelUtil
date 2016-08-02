@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import com.ge.power.excelutil.vo.ExcelVO;
 import com.ge.power.excelutil.vo.ParamterVO;
 
 @Component
@@ -41,4 +42,6 @@ public abstract class ExportFactory{
 	protected String getFileName(){
 		return new String().concat(filePath).concat(fileName).concat(".xls");
 		}
+
+	public abstract String downloadExcel(ExcelVO excelVO) throws Exception;
 }
