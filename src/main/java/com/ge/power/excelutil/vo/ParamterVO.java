@@ -23,7 +23,7 @@ public class ParamterVO {
  private String allowDropdown;
  private String displayOn;
  private String iOData;
- private String TableName;
+ private String tableName;
  private String sheet;
  
 public String getParam_name() {
@@ -146,11 +146,12 @@ public String getiOData() {
 public void setiOData(String iOData) {
 	this.iOData = iOData;
 }
+
 public String getTableName() {
-	return TableName;
+	return tableName;
 }
 public void setTableName(String tableName) {
-	TableName = tableName;
+	this.tableName = tableName;
 }
 public String getSheet() {
 	return sheet;
