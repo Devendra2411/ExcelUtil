@@ -26,6 +26,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ge.power.excelutil.factory.ExportFactory;
+import com.ge.power.excelutil.vo.DownloadProcess;
 import com.ge.power.excelutil.vo.ExcelResponse;
 import com.ge.power.excelutil.vo.ExcelVO;
 import com.ge.power.excelutil.vo.ParamterVO;
@@ -132,19 +133,21 @@ public class ExportController {
 	}
 	private ExcelVO callRestService(ExcelVO excelVO){
 		try{
-			String url="https://websilonadminstage.run.asv-pr.ice.predix.io/WebsilonAdmin/Services/getIOParams";
+			//String url="https://websilonadminstage.run.asv-pr.ice.predix.io/WebsilonAdmin/Services/getIOParams";
+			String url="https://WebsilonAdminProd.run.asv-pr.ice.predix.io/WebsilonAdmin/Services/getIOParams";
 			ObjectMapper mapper = new ObjectMapper();
 			String jsonInput = new Gson().toJson(excelVO);
-			System.out.println("jsonInput :" + jsonInput);
+			System.out.println("jsonInput callRestService  WebsilonAdminProd:" + jsonInput);
 
 
-			HttpHeaders requestHeaders = new HttpHeaders();
+		/*	HttpHeaders requestHeaders = new HttpHeaders();
 			requestHeaders.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-			requestHeaders.setContentType( MediaType.APPLICATION_JSON ); 
+			requestHeaders.setContentType( MediaType.APPLICATION_JSON ); */
 			RestTemplate restTemplate = new RestTemplate();
 
 			HttpHeaders headers = new HttpHeaders();
 			headers.setContentType(MediaType.APPLICATION_JSON);
+	//		headers.set("Authorization", "Basic R0VQb3dlci00aG5Dc2NIQzdxYTRXeHpNTmxSRnFEOFQ6ODJkMjBlODFmMzU2YmJjMmUwOTE1ODk0MWJiNjU1OGQwOTQ3NmFlZg==");
 			HttpEntity<String> entity = new HttpEntity<String>(jsonInput, headers);
 
 			ResponseEntity<String> result1 = restTemplate
@@ -158,5 +161,27 @@ public class ExportController {
 		}
 		return excelVO;		
 
+	}
+	
+	@RequestMapping("/downloadProcessPage")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON_VALUE)
+	@Produces(MediaType.APPLICATION_JSON_VALUE)
+	public String downloadProcessPage(@RequestBody DownloadProcess downloadProcess){
+		String fileName=null;
+		System.out.println("downloadProcessPage :" );
+		try{
+			//excelVO = callRestService(excelVO);
+			String jsonInput = new Gson().toJson(downloadProcess);
+			System.out.println("jsonInput :" + jsonInput);
+			fileName= exportFactory.downloadProcessPage(downloadProcess);
+			ExcelResponse response = new ExcelResponse();
+			response.setOuput(encodeFileToBase64Binary(fileName));
+			return new Gson().toJson(response); 
+
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return fileName;
 	}
 }

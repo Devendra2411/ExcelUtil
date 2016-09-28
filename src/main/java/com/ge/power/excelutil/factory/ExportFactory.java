@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import com.ge.power.excelutil.vo.DownloadProcess;
 import com.ge.power.excelutil.vo.ExcelVO;
 import com.ge.power.excelutil.vo.ParamterVO;
 
@@ -44,4 +45,5 @@ public abstract class ExportFactory{
 		}
 
 	public abstract String downloadExcel(ExcelVO excelVO) throws Exception;
+	public abstract String downloadProcessPage(DownloadProcess downloadProcess) throws Exception;
 }
