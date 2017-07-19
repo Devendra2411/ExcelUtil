@@ -26,6 +26,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ge.power.excelutil.factory.ExportFactory;
+import com.ge.power.excelutil.vo.DataSpanVO;
 import com.ge.power.excelutil.vo.DownloadProcess;
 import com.ge.power.excelutil.vo.ExcelResponse;
 import com.ge.power.excelutil.vo.ExcelVO;
@@ -133,8 +134,8 @@ public class ExportController {
 	}
 	private ExcelVO callRestService(ExcelVO excelVO){
 		try{
-			//String url="https://websilonadminstage.run.asv-pr.ice.predix.io/WebsilonAdmin/Services/getIOParams";
-			String url="https://WebsilonAdminProd.run.asv-pr.ice.predix.io/WebsilonAdmin/Services/getIOParams";
+			String url="https://websilonadminstage.run.asv-pr.ice.predix.io/WebsilonAdmin/Services/getIOParams";
+			//String url="https://WebsilonAdminProd.run.asv-pr.ice.predix.io/WebsilonAdmin/Services/getIOParams";
 			ObjectMapper mapper = new ObjectMapper();
 			String jsonInput = new Gson().toJson(excelVO);
 			System.out.println("jsonInput callRestService  WebsilonAdminProd:" + jsonInput);
@@ -175,6 +176,29 @@ public class ExportController {
 			String jsonInput = new Gson().toJson(downloadProcess);
 			System.out.println("jsonInput :" + jsonInput);
 			fileName= exportFactory.downloadProcessPage(downloadProcess);
+			ExcelResponse response = new ExcelResponse();
+			response.setOuput(encodeFileToBase64Binary(fileName));
+			return new Gson().toJson(response); 
+
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return fileName;
+	}
+	
+	
+	@RequestMapping("/downloadDataSpan")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON_VALUE)
+	@Produces(MediaType.APPLICATION_JSON_VALUE)
+	public String downloadDataSpan(@RequestBody DataSpanVO data){
+		String fileName=null;
+		System.out.println("downloadDataSpan :" );
+		try{
+			//excelVO = callRestService(excelVO);
+			String jsonInput = new Gson().toJson(data);
+			System.out.println("jsonInput :" + jsonInput);
+			fileName= exportFactory.downloadDataSpan(data);
 			ExcelResponse response = new ExcelResponse();
 			response.setOuput(encodeFileToBase64Binary(fileName));
 			return new Gson().toJson(response); 

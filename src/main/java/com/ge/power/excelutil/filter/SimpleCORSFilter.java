@@ -22,7 +22,6 @@ public SimpleCORSFilter() {
     log.info("SimpleCORSFilter init");
 }
 
-@Override
 public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
 
     HttpServletRequest request = (HttpServletRequest) req;
@@ -36,11 +35,9 @@ public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
     chain.doFilter(req, res);
 }
 
-@Override
 public void init(FilterConfig filterConfig) {
 }
 
-@Override
 public void destroy() {
 }
 
