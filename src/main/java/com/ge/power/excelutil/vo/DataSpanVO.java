@@ -29,10 +29,12 @@ public class DataSpanVO {
 	private List<ErrorVO> errorData;
 	
 	private TableViewVO tableViewVO;
-	private TableViewVO curveFit;
+	private List<TableViewVO> curveFit;
 	
 	private String runDate;
 	private String runTime;
+	private String runID;
+	private String startTime;
 
 	public String getModelName() {
 		return modelName;
@@ -209,13 +211,28 @@ public class DataSpanVO {
 	public void setRunTime(String runTime) {
 		this.runTime = runTime;
 	}
+	public String getRunID() {
+		return runID;
+	}
 
-	public TableViewVO getCurveFit() {
+	public void setRunID(String runID) {
+		this.runID = runID;
+	}
+
+	public List<TableViewVO> getCurveFit() {
 		return curveFit;
 	}
 
-	public void setCurveFit(TableViewVO curveFit) {
+	public void setCurveFit(List<TableViewVO> curveFit) {
 		this.curveFit = curveFit;
+	}
+
+	public String getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
 	}
 
 }

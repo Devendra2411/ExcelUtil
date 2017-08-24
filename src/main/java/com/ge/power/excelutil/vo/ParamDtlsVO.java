@@ -10,6 +10,7 @@ public class ParamDtlsVO {
 	private String initialValue;
 	private String finalValue;
 	private String increamentValue;
+	private String iteration;
 
 	private String param_type_value;
 	private String def_param_label;
@@ -173,6 +174,12 @@ public class ParamDtlsVO {
 	}
 	public void setActive(String active) {
 		this.active = active;
+	}
+	public String getIteration() {
+		return iteration;
+	}
+	public void setIteration(String iteration) {
+		this.iteration = iteration;
 	}
 
 }

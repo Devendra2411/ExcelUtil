@@ -659,6 +659,14 @@ public class ExcelExportService extends ExportFactory{
                         headerRow.createCell(0).setCellValue("DATA SPAN TOOL");
                         headerRow.getCell(0).setCellStyle(style);
                         
+                        String date=null;
+                        String time=null;
+                        if(data.getStartTime()!=null && !data.getStartTime().equalsIgnoreCase("")){
+                        	String[] parts = data.getStartTime().split("\\s", 2);
+                        	date = parts[0];
+                        	time = parts[1]; 
+                        }
+                        
                         row = row+3;
                         headerRow = inputsheet.createRow(row);
                         headerRow.createCell(0).setCellValue("Model Name");
@@ -671,11 +679,11 @@ public class ExcelExportService extends ExportFactory{
                         headerRow.getCell(3).setCellStyle(contentStyle);
                         headerRow.createCell(4).setCellValue("Date of Run");
                         headerRow.getCell(4).setCellStyle(hdrStyle);
-                        headerRow.createCell(5).setCellValue(data.getRunDate());
+                        headerRow.createCell(5).setCellValue(date);
                         headerRow.getCell(5).setCellStyle(contentStyle);
                         headerRow.createCell(6).setCellValue("Time of Run");
                         headerRow.getCell(6).setCellStyle(hdrStyle);
-                        headerRow.createCell(7).setCellValue(data.getRunTime()); 
+                        headerRow.createCell(7).setCellValue(time); 
                         headerRow.getCell(7).setCellStyle(contentStyle);
                                       
                         if(data.getiOData()!=null){
@@ -683,9 +691,9 @@ public class ExcelExportService extends ExportFactory{
                                List<ParamDtlsVO> ouputData = new ArrayList<ParamDtlsVO>();
                                     
                                for (ParamDtlsVO paramterVO : data.getiOData()) {
-                                      if(paramterVO.getParam_type().equalsIgnoreCase("I")){
+                                      if(paramterVO.getParam_type().equalsIgnoreCase("I") && paramterVO.getIteration().equalsIgnoreCase("1")){
                                              inputData.add(paramterVO);
-                                      }else if(paramterVO.getParam_type().equalsIgnoreCase("O")){
+                                      }else if(paramterVO.getParam_type().equalsIgnoreCase("O") && paramterVO.getIteration().equalsIgnoreCase("1") && !paramterVO.getParam_label().equalsIgnoreCase("Program Return Status")){
                                              ouputData.add(paramterVO);
                                       }
                                }
@@ -769,62 +777,76 @@ public class ExcelExportService extends ExportFactory{
                                   }
                                
                                if(data.getCurveFit()!=null){
-                               row = row+2;
-                               headerRow = inputsheet.createRow(row);
-                               headerRow.createCell(0).setCellValue("Results-Curve Fit");
-                               headerRow.getCell(0).setCellStyle(hdrStyle);
-                               headerRow.createCell(2).setCellValue("Equation");
-                               headerRow.getCell(2).setCellStyle(hdrStyle);
-                               headerRow.createCell(3).setCellValue(data.getCurveFit().getEquation());
-                               inputsheet.addMergedRegion(new CellRangeAddress(headerRow.getRowNum(),headerRow.getRowNum(),3,5));
-                               headerRow.createCell(4);
-                               headerRow.createCell(5);
-                                 for(int i=3;i<=5;i++){
-                                   headerRow.getCell(i).setCellStyle(contentStyle);
-                                 }
-                               row = row+2;
-                               headerRow = inputsheet.createRow(row);
-                               headerRow.createCell(0).setCellValue(inputData.get(0).getParam_label()+"(a)");
-                               headerRow.getCell(0).setCellStyle(hdrStyle);
-                              
-                            	   if(data.getCurveFit().getxValue()!=null){
-                                       for(int i=1;i<=data.getCurveFit().getxValue().size();i++){
-                                              String xValue=data.getCurveFit().getxValue().get(i-1);
-                                           headerRow.createCell(i).setCellValue(xValue);
-                                           headerRow.getCell(i).setCellStyle(contentStyle);
-                                       }
-                                   }
-                            	   
-                            	   row = row+1;
-                                   if(data.getCurveFit().getyValue()!=null){
-                                          for (java.util.Map.Entry<String,List<IOValuesVO>> entry : data.getCurveFit().getyValue().entrySet()) {
-                                                 headerRow = inputsheet.createRow(row);
-                                                 String key=entry.getKey();
-                                                 if(key!=null && !key.equalsIgnoreCase("")){
-                                                 headerRow.createCell(0).setCellValue(ouputData.get(0).getParam_label()+"(Y)("+inputData.get(1).getParam_label()+"(b="+key+"))");
-                                                 headerRow.getCell(0).setCellStyle(hdrStyle);
-                                                 List<IOValuesVO> list=entry.getValue();
-                                                 for(int i=1;i<=list.size();i++){
-                                                        IOValuesVO iOValuesVO=list.get(i-1);
-                                                        headerRow.createCell(i).setCellValue(iOValuesVO.getOutput());
-                                                 }
-                                                       
-                                            }else{
-                                                   headerRow.createCell(0).setCellValue(ouputData.get(0).getParam_label()+"(Y)"); 
-                                                   headerRow.getCell(0).setCellStyle(hdrStyle);
-                                                   List<IOValuesVO> list=entry.getValue();
-                                                        for(int i=1;i<=list.size();i++){
-                                                               IOValuesVO iOValuesVO=list.get(i-1);
-                                                               headerRow.createCell(i).setCellValue(iOValuesVO.getOutput());
-                                                        }
+                            	   if(data.getCurveFit().size()>0){
+                            		   for(int i=0;i<data.getCurveFit().size();i++){
+                            			   if(i==0){
+                            				   row = row+2;
+                                               headerRow = inputsheet.createRow(row);
+                                               headerRow.createCell(0).setCellValue("Results-Curve Fit");
+                                               headerRow.getCell(0).setCellStyle(hdrStyle); 
+                                               
+                                               row = row+2;
+                                               headerRow = inputsheet.createRow(row);
+                                               headerRow.createCell(0).setCellValue(inputData.get(0).getParam_label()+"(a)");
+                                               headerRow.getCell(0).setCellStyle(hdrStyle);
+                                              
+                                            	   if(data.getCurveFit().get(i).getxValue()!=null){
+                                                       for(int j=1;j<=data.getCurveFit().get(i).getxValue().size();j++){
+                                                              String xValue=data.getCurveFit().get(i).getxValue().get(j-1);
+                                                           headerRow.createCell(j).setCellValue(xValue);
+                                                           headerRow.getCell(j).setCellStyle(contentStyle);
+                                                       }
+                                                   }
+                            			     }
+                            			   
+                            			   row = row+1;
+                                           if(data.getCurveFit().get(i).getyValue()!=null){
+                                                  for (java.util.Map.Entry<String,List<IOValuesVO>> entry : data.getCurveFit().get(i).getyValue().entrySet()) {
+                                                         headerRow = inputsheet.createRow(row);
+                                                         String key=entry.getKey();
+                                                         if(key!=null && !key.equalsIgnoreCase("")){
+                                                         headerRow.createCell(0).setCellValue(ouputData.get(0).getParam_label()+"(Y)("+inputData.get(1).getParam_label()+"(b="+key+"))");
+                                                         headerRow.getCell(0).setCellStyle(hdrStyle);
+                                                         List<IOValuesVO> list=entry.getValue();
+                                                         for(int j=1;j<=list.size();j++){
+                                                                IOValuesVO iOValuesVO=list.get(j-1);
+                                                                headerRow.createCell(j).setCellValue(iOValuesVO.getOutput());
+                                                         }
+                                                               
+                                                    }else{
+                                                           headerRow.createCell(0).setCellValue(ouputData.get(0).getParam_label()+"(Y)"); 
+                                                           headerRow.getCell(0).setCellStyle(hdrStyle);
+                                                           List<IOValuesVO> list=entry.getValue();
+                                                                for(int j=1;j<=list.size();j++){
+                                                                       IOValuesVO iOValuesVO=list.get(j-1);
+                                                                       headerRow.createCell(j).setCellValue(iOValuesVO.getOutput());
+                                                                }
+                                                          }
+                                                         row = row+1;
                                                   }
-                                                 row = row+1;
-                                          }
-                                   }
+                                           }
+                            		   }
                             	   
+                            	   }
+                            	   row = row+2;
+                            	   headerRow = inputsheet.createRow(row);
+                            	   headerRow.createCell(0).setCellValue("Curve Fit Equation(s):");
+                                   headerRow.getCell(0).setCellStyle(hdrStyle);
+                                   
+                                   row = row+1;
+                            	   for(int i=0;i<data.getCurveFit().size();i++){
+                            		    headerRow = inputsheet.createRow(row);
+                            		    headerRow.createCell(0).setCellValue(data.getCurveFit().get(i).getEquation());
+                                        inputsheet.addMergedRegion(new CellRangeAddress(headerRow.getRowNum(),headerRow.getRowNum(),0,2));
+                                        headerRow.createCell(1);
+                                        headerRow.createCell(2);
+                                          for(int j=0;j<=2;j++){
+                                            headerRow.getCell(j).setCellStyle(contentStyle);
+                                         }
+                                          row = row+1;   
+                            	   }
                                }
-                               
-                        }
+                         }
                     }
                   
                    for (int i = 0; i < inputsheet.getRow(inputsheet.getLastRowNum()).getPhysicalNumberOfCells(); ++i) {
