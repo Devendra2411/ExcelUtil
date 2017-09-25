@@ -9,6 +9,10 @@ public class ParamRefDtls
     private String param_corrected;
 
     private String param_type_value;
+    
+    private String margin_sense;
+    
+    private String param_label;
 
     public String getParam_margin ()
     {
@@ -49,5 +53,33 @@ public class ParamRefDtls
     {
         this.param_type_value = param_type_value;
     }
+
+	/**
+	 * @return the margin_sense
+	 */
+	public String getMargin_sense() {
+		return margin_sense;
+	}
+
+	/**
+	 * @param margin_sense the margin_sense to set
+	 */
+	public void setMargin_sense(String margin_sense) {
+		this.margin_sense = margin_sense;
+	}
+
+	/**
+	 * @return the param_label
+	 */
+	public String getParam_label() {
+		return param_label;
+	}
+
+	/**
+	 * @param param_label the param_label to set
+	 */
+	public void setParam_label(String param_label) {
+		this.param_label = param_label;
+	}
 
 }

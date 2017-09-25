@@ -7,6 +7,8 @@ public class ParamterVO {
  private String param_label;
  private String param_unit;
  private String max_Value_Allowed;
+ private String param_value_type;
+ private String display;
  
  
  private String caseName;
@@ -158,6 +160,30 @@ public String getSheet() {
 }
 public void setSheet(String sheet) {
 	this.sheet = sheet;
+}
+/**
+ * @return the param_value_type
+ */
+public String getParam_value_type() {
+	return param_value_type;
+}
+/**
+ * @param param_value_type the param_value_type to set
+ */
+public void setParam_value_type(String param_value_type) {
+	this.param_value_type = param_value_type;
+}
+/**
+ * @return the display
+ */
+public String getDisplay() {
+	return display;
+}
+/**
+ * @param display the display to set
+ */
+public void setDisplay(String display) {
+	this.display = display;
 }
  
 }

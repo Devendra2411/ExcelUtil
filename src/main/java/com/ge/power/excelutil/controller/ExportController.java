@@ -1,16 +1,16 @@
 package com.ge.power.excelutil.controller;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Collections;
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Produces;
 
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -33,10 +33,6 @@ import com.ge.power.excelutil.vo.ExcelVO;
 import com.ge.power.excelutil.vo.ParamterVO;
 import com.google.gson.Gson;
 
-import java.io.File;
-
-import org.apache.commons.codec.binary.Base64;
-
 @RestController
 @RequestMapping("/services/exportService")
 
@@ -44,7 +40,11 @@ public class ExportController {
 
 	@Autowired
 	private ExportFactory exportFactory;
-
+	
+	//Stage
+	private static String url="https://pmeadminstage.run.asv-pr.ice.predix.io/WebsilonAdmin/Services/getIOParams";
+	//Prod
+	//private static String url="https://pmeadminprod.run.asv-pr.ice.predix.io/WebsilonAdmin/Services/getIOParams";
 
 	@RequestMapping("/dataExport")
 	@POST
@@ -52,15 +52,8 @@ public class ExportController {
 	@Produces(MediaType.APPLICATION_JSON_VALUE)
 	public String exportData(@RequestBody List<ParamterVO> paramterVOList){
 		String fileName=null;
-		// InputStream is = null;
-		//response.setHeader("Content-disposition", "attachment;filenameFinanceDashBoardd.xls");
-		//  response.setContentType("application/vnd.ms-excel");
-
 		try{
 			fileName= exportFactory.export(paramterVOList);
-			//  is=new FileInputStream(fileName);
-			//   org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
-			//   response.flushBuffer();
 			ExcelResponse response = new ExcelResponse();
 			response.setOuput(encodeFileToBase64Binary(fileName));
 			return new Gson().toJson(response); 
@@ -77,7 +70,6 @@ public class ExportController {
 		return result;
 	}	
 
-	@SuppressWarnings("unused")
 	private String encodeFileToBase64Binary(String fileName)
 			throws IOException {
 
@@ -134,30 +126,21 @@ public class ExportController {
 	}
 	private ExcelVO callRestService(ExcelVO excelVO){
 		try{
-			String url="https://websilonadminstage.run.asv-pr.ice.predix.io/WebsilonAdmin/Services/getIOParams";
-			//String url="https://WebsilonAdminProd.run.asv-pr.ice.predix.io/WebsilonAdmin/Services/getIOParams";
 			ObjectMapper mapper = new ObjectMapper();
 			String jsonInput = new Gson().toJson(excelVO);
 			System.out.println("jsonInput callRestService  WebsilonAdminProd:" + jsonInput);
-
-
-		/*	HttpHeaders requestHeaders = new HttpHeaders();
-			requestHeaders.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-			requestHeaders.setContentType( MediaType.APPLICATION_JSON ); */
+	
 			RestTemplate restTemplate = new RestTemplate();
 
 			HttpHeaders headers = new HttpHeaders();
 			headers.setContentType(MediaType.APPLICATION_JSON);
-	//		headers.set("Authorization", "Basic R0VQb3dlci00aG5Dc2NIQzdxYTRXeHpNTmxSRnFEOFQ6ODJkMjBlODFmMzU2YmJjMmUwOTE1ODk0MWJiNjU1OGQwOTQ3NmFlZg==");
 			HttpEntity<String> entity = new HttpEntity<String>(jsonInput, headers);
 
-			ResponseEntity<String> result1 = restTemplate
-					.exchange(url, HttpMethod.POST, entity, String.class);
-			System.out.println("result1.getBody() :" + result1.getBody());
-			excelVO = mapper.readValue(result1.getBody(),ExcelVO.class);
+			ResponseEntity<String> result = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+			System.out.println("result.getBody() :" + result.getBody());
+			excelVO = mapper.readValue(result.getBody(),ExcelVO.class);
 			
 		}catch (Exception e) {
-			//log.warn("Exception at callDotNetService () :"+e);
 			e.printStackTrace();
 		}
 		return excelVO;		
@@ -172,7 +155,6 @@ public class ExportController {
 		String fileName=null;
 		System.out.println("downloadProcessPage :" );
 		try{
-			//excelVO = callRestService(excelVO);
 			String jsonInput = new Gson().toJson(downloadProcess);
 			System.out.println("jsonInput :" + jsonInput);
 			fileName= exportFactory.downloadProcessPage(downloadProcess);
@@ -195,7 +177,6 @@ public class ExportController {
 		String fileName=null;
 		System.out.println("downloadDataSpan :" );
 		try{
-			//excelVO = callRestService(excelVO);
 			String jsonInput = new Gson().toJson(data);
 			System.out.println("jsonInput :" + jsonInput);
 			fileName= exportFactory.downloadDataSpan(data);

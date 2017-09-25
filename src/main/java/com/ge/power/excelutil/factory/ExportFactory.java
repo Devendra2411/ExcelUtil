@@ -23,8 +23,7 @@ public abstract class ExportFactory{
 	@Value("${export.file.path}")	
 	protected String filePath;
 	
-	
-	
+
 	public abstract String export(List<ParamterVO> ExportData) throws Exception;
 	
 	protected List<String> getHeaders(){
