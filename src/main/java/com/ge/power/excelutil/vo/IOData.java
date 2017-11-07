@@ -11,6 +11,8 @@ public class IOData
     private String refCondition;
 
     private String units;
+    
+    private String margin_sense;
 
     public String getParam_label ()
     {
@@ -61,5 +63,19 @@ public class IOData
     {
         this.units = units;
     }
+
+	/**
+	 * @return the margin_sense
+	 */
+	public String getMargin_sense() {
+		return margin_sense;
+	}
+
+	/**
+	 * @param margin_sense the margin_sense to set
+	 */
+	public void setMargin_sense(String margin_sense) {
+		this.margin_sense = margin_sense;
+	}
    
 }

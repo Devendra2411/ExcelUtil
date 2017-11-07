@@ -23,6 +23,8 @@ public class ProcessDtls
     private String test_unit;
 
     private String caseName;
+    
+    private String unitSystem;
 
     private String analysis_date;
     public String getTest_date ()
@@ -141,6 +143,20 @@ public class ProcessDtls
 
 	public void setAnalysis_date(String analysis_date) {
 		this.analysis_date = analysis_date;
+	}
+
+	/**
+	 * @return the unitSystem
+	 */
+	public String getUnitSystem() {
+		return unitSystem;
+	}
+
+	/**
+	 * @param unitSystem the unitSystem to set
+	 */
+	public void setUnitSystem(String unitSystem) {
+		this.unitSystem = unitSystem;
 	}
 
 }

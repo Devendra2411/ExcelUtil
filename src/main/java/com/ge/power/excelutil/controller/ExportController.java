@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ge.power.excelutil.dao.WebsilonCCDAO;
 import com.ge.power.excelutil.factory.ExportFactory;
 import com.ge.power.excelutil.vo.DataSpanVO;
 import com.ge.power.excelutil.vo.DownloadProcess;
@@ -40,6 +41,9 @@ public class ExportController {
 
 	@Autowired
 	private ExportFactory exportFactory;
+	
+	@Autowired
+	private WebsilonCCDAO websilonDAO;
 	
 	//Stage
 	private static String url="https://pmeadminstage.run.asv-pr.ice.predix.io/WebsilonAdmin/Services/getIOParams";
@@ -113,7 +117,7 @@ public class ExportController {
 		String fileName=null;
 		System.out.println("downloadExcel :" );
 		try{
-			excelVO = callRestService(excelVO);
+			excelVO = websilonDAO.getIOParams(excelVO);
 			fileName= exportFactory.downloadExcel(excelVO);
 			ExcelResponse response = new ExcelResponse();
 			response.setOuput(encodeFileToBase64Binary(fileName));

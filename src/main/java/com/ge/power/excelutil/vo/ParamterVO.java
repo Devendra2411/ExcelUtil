@@ -28,6 +28,7 @@ public class ParamterVO {
  private String tableName;
  private String sheet;
  
+ 
 public String getParam_name() {
 	return param_name;
 }
@@ -185,5 +186,8 @@ public String getDisplay() {
 public void setDisplay(String display) {
 	this.display = display;
 }
+/**
+ * @return the margin_sense
+ */
  
 }

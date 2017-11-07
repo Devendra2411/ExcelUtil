@@ -28,7 +28,7 @@ public class DataSpanVO {
 	private List<ParamDtlsVO> iOData;
 	private List<ErrorVO> errorData;
 	
-	private TableViewVO tableViewVO;
+	private List<TableViewVO> tableViewVO;
 	private List<TableViewVO> curveFit;
 	
 	private String runDate;
@@ -188,14 +188,6 @@ public class DataSpanVO {
 		this.errorData = errorData;
 	}
 
-	public TableViewVO getTableViewVO() {
-		return tableViewVO;
-	}
-
-	public void setTableViewVO(TableViewVO tableViewVO) {
-		this.tableViewVO = tableViewVO;
-	}
-
 	public String getRunDate() {
 		return runDate;
 	}
@@ -233,6 +225,20 @@ public class DataSpanVO {
 
 	public void setStartTime(String startTime) {
 		this.startTime = startTime;
+	}
+
+	/**
+	 * @return the tableViewVO
+	 */
+	public List<TableViewVO> getTableViewVO() {
+		return tableViewVO;
+	}
+
+	/**
+	 * @param tableViewVO the tableViewVO to set
+	 */
+	public void setTableViewVO(List<TableViewVO> tableViewVO) {
+		this.tableViewVO = tableViewVO;
 	}
 
 }
