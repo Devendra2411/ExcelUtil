@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Produces;
@@ -27,6 +29,7 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ge.power.excelutil.dao.WebsilonCCDAO;
 import com.ge.power.excelutil.factory.ExportFactory;
+import com.ge.power.excelutil.util.WebsilonConstant;
 import com.ge.power.excelutil.vo.DataSpanVO;
 import com.ge.power.excelutil.vo.DownloadProcess;
 import com.ge.power.excelutil.vo.ExcelResponse;
@@ -54,9 +57,14 @@ public class ExportController {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON_VALUE)
 	@Produces(MediaType.APPLICATION_JSON_VALUE)
-	public String exportData(@RequestBody List<ParamterVO> paramterVOList){
+	public String exportData(@RequestBody ExcelVO excel,ServletRequest req){
 		String fileName=null;
+		String retVal = compareSSO(req,excel.getSsoID());
+		if(!retVal.equalsIgnoreCase(WebsilonConstant.EMPTY_STRING)){
+			return "not authorized";
+		}
 		try{
+			List<ParamterVO> paramterVOList=excel.getiOData();
 			fileName= exportFactory.export(paramterVOList);
 			ExcelResponse response = new ExcelResponse();
 			response.setOuput(encodeFileToBase64Binary(fileName));
@@ -113,9 +121,13 @@ public class ExportController {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON_VALUE)
 	@Produces(MediaType.APPLICATION_JSON_VALUE)
-	public String downloadExcel(@RequestBody ExcelVO excelVO){
+	public String downloadExcel(@RequestBody ExcelVO excelVO,ServletRequest req){
 		String fileName=null;
 		System.out.println("downloadExcel :" );
+		String retVal = compareSSO(req,excelVO.getSsoID());
+		if(!retVal.equalsIgnoreCase(WebsilonConstant.EMPTY_STRING)){
+			return "not authorized";
+		}
 		try{
 			excelVO = websilonDAO.getIOParams(excelVO);
 			fileName= exportFactory.downloadExcel(excelVO);
@@ -155,9 +167,15 @@ public class ExportController {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON_VALUE)
 	@Produces(MediaType.APPLICATION_JSON_VALUE)
-	public String downloadProcessPage(@RequestBody DownloadProcess downloadProcess){
+	public String downloadProcessPage(@RequestBody DownloadProcess downloadProcess,ServletRequest req){
 		String fileName=null;
 		System.out.println("downloadProcessPage :" );
+		
+		String retVal = compareSSO(req,downloadProcess.getSsoID());
+		if(!retVal.equalsIgnoreCase(WebsilonConstant.EMPTY_STRING)){
+			return "not authorized";
+		}
+		
 		try{
 			String jsonInput = new Gson().toJson(downloadProcess);
 			System.out.println("jsonInput :" + jsonInput);
@@ -177,9 +195,15 @@ public class ExportController {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON_VALUE)
 	@Produces(MediaType.APPLICATION_JSON_VALUE)
-	public String downloadDataSpan(@RequestBody DataSpanVO data){
+	public String downloadDataSpan(@RequestBody DataSpanVO data,ServletRequest req){
 		String fileName=null;
 		System.out.println("downloadDataSpan :" );
+		
+		String retVal = compareSSO(req,data.getSsoID());
+		if(!retVal.equalsIgnoreCase(WebsilonConstant.EMPTY_STRING)){
+			return "not authorized";
+		}
+		
 		try{
 			String jsonInput = new Gson().toJson(data);
 			System.out.println("jsonInput :" + jsonInput);
@@ -192,5 +216,18 @@ public class ExportController {
 			e.printStackTrace();
 		}
 		return fileName;
+	}
+	
+	
+	public String compareSSO(ServletRequest req,String ssoFromBody){
+		 HttpServletRequest request = (HttpServletRequest)req;
+		 String ssoFromToken = (String)request.getSession().getAttribute("ssoFromToken");
+		 System.out.println("- ssoFromToken in dropdown service - "+ssoFromToken);
+		 System.out.println("- sso From body in dropdown service - "+ ssoFromBody.trim() );
+		 if(ssoFromToken != null && !ssoFromToken.equalsIgnoreCase(ssoFromBody.trim())){
+			 System.out.println("SSO does not match");
+			 return "not authorized";
+		}
+		 return WebsilonConstant.EMPTY_STRING;
 	}
 }

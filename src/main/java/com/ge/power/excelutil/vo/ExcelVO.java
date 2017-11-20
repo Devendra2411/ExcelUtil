@@ -7,6 +7,7 @@ public class ExcelVO {
 	private String caseID;
 	private String modelID;
 	private List<ParamterVO> iOData;
+	private String ssoID;
 	public String getCaseID() {
 		return caseID;
 	}
@@ -24,6 +25,18 @@ public class ExcelVO {
 	}
 	public void setiOData(List<ParamterVO> iOData) {
 		this.iOData = iOData;
+	}
+	/**
+	 * @return the ssoID
+	 */
+	public String getSsoID() {
+		return ssoID;
+	}
+	/**
+	 * @param ssoID the ssoID to set
+	 */
+	public void setSsoID(String ssoID) {
+		this.ssoID = ssoID;
 	}
 	
 }

@@ -41,10 +41,14 @@ import com.ge.power.excelutil.vo.ValidUserVO;
 class AuthorizationFilter implements Filter {
 
 	private static final Logger logger = LoggerFactory.getLogger(AuthorizationFilter.class);
+	//asv
+	//private final String checkTokenURL = "https://a99b7fee-a495-4161-89c3-faa83054627d.predix-uaa.run.asv-pr.ice.predix.io/check_token";//CommonUtil.getSystemEnvVal(WebsilonConstant.UAA_CHECK_TOKEN_URL);
+	//private String authorizationHeader = "Basic cG93ZXJfcG1lX3N0YWdlOnptM2kxVTBKbFRXV2hCaGY=";//CommonUtil.getSystemEnvVal(WebsilonConstant.OAUTH_AUTH_HEADER);
 
-	private final String checkTokenURL = "https://a99b7fee-a495-4161-89c3-faa83054627d.predix-uaa.run.asv-pr.ice.predix.io/check_token";//CommonUtil.getSystemEnvVal(WebsilonConstant.UAA_CHECK_TOKEN_URL);
-	private String authorizationHeader = "Basic cG93ZXJfcG1lX3N0YWdlOnptM2kxVTBKbFRXV2hCaGY=";//CommonUtil.getSystemEnvVal(WebsilonConstant.OAUTH_AUTH_HEADER);
-
+	//aws
+	private final String checkTokenURL = "https://a8a2ffc4-b04e-4ec1-bfed-7a51dd408725.predix-uaa.run.aws-usw02-pr.ice.predix.io/check_token";
+	private String authorizationHeader = "Basic cG93ZXJfcG1lX3N0YWdlOjkzZ0RYbGxHZ3ZBNzZJRHI=";
+	
 	@Autowired
 	private WebsilonCCDAO websilonDAO;
 	
@@ -87,6 +91,10 @@ class AuthorizationFilter implements Filter {
 					if (sso != null && !sso.trim().isEmpty()) {
 						//String userSSO = httpServletRequest.getHeader("userSSO");
 						//if (userSSO != null && userSSO.equalsIgnoreCase(sso)) {
+						
+						HttpServletRequest request = (HttpServletRequest)req;
+						request.getSession().setAttribute("ssoFromToken",sso);
+						
 						ValidUserVO access = new ValidUserVO();
 						access.setSsoID(sso.trim());
 						try {

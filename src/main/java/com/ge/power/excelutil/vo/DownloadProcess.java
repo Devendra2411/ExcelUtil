@@ -9,6 +9,8 @@ public class DownloadProcess
     private List<IOData> iOData;
 
     private List<ProcessDtls> processDtls;
+    
+    private String ssoID;
 
 	public List<ParamRefDtls> getParamRefDtls() {
 		return paramRefDtls;
@@ -32,6 +34,20 @@ public class DownloadProcess
 
 	public void setProcessDtls(List<ProcessDtls> processDtls) {
 		this.processDtls = processDtls;
+	}
+
+	/**
+	 * @return the ssoID
+	 */
+	public String getSsoID() {
+		return ssoID;
+	}
+
+	/**
+	 * @param ssoID the ssoID to set
+	 */
+	public void setSsoID(String ssoID) {
+		this.ssoID = ssoID;
 	}
 
     
